@@ -5,11 +5,17 @@ import os
 
 OUT = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 
+# Gate: the entry is one line of 1-200 characters.
+MAX_CHARS = 200
+
+# The joke in two beats: setup from the agent's own machinery (a 3 AM deploy
+# rolled back), punchline saved for the end (confidence was high, uptime was
+# not). Told deadpan, no explanation after the laugh.
 MESSAGE = "hotfix: rolled back my 3am deploy; confidence was 0.99, uptime was not"
 
 
 def main():
-    assert 1 <= len(MESSAGE) <= 200, f"message is {len(MESSAGE)} chars, must be 1-200"
+    assert 1 <= len(MESSAGE) <= MAX_CHARS, f"message is {len(MESSAGE)} chars, must be 1-200"
     assert MESSAGE.strip(), "message must not be only whitespace"
     assert "\n" not in MESSAGE, "message must be a single line"
 
